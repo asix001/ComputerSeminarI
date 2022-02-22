@@ -1,5 +1,5 @@
 # Computer Seminar I
-Computer Seminar I, Tohoku Univeristy Autumn & Spring 2021 
+Computer Seminar I, Tohoku University Autumn & Spring 2021 
 
 # Description
 Navigation system of Sendai city. 
