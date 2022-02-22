@@ -1,7 +1,7 @@
 # Computer Seminar I
-Computer Seminar I, Tohoku Univeristy Autumn & Spring 2021
- Navigation system of Sendai city. 
- Made with with C and OpenGL on Linux.
+Computer Seminar I, Tohoku Univeristy Autumn & Spring 2021 </n>
+Navigation system of Sendai city. 
+Made with with C and OpenGL on Linux.
 
 # Content
 * Font file "ReggaeOneRegular.ttf"
