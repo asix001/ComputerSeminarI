@@ -11,3 +11,5 @@ Navigation system of Sendai city made with with C and OpenGL on Linux. Uses Dijk
 * Header file with function to finding current directory "directory.h"
 * makefile
 
+
+
