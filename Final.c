@@ -17,7 +17,7 @@
 
 /*Global Font*/
 #ifndef FONT_NAME
-#define FONT_NAME "/ReggaeOne-Regular.ttf" /*WRITE CORRECT DIRECTORY FOR THE FONT FILE!!!*/
+#define FONT_NAME "/ReggaeOne-Regular.ttf" 
 #endif
 void currentDirectory(void);
 
