@@ -2,7 +2,7 @@
 Computer Seminar I, Tohoku University Autumn & Spring 2021 
 
 # Description
-Navigation system of Sendai city made with with C and OpenGL on Linux. Uses Dijkstra algorithm to find the shortest path between two crossings.
+Navigation system of Sendai city made with with C and OpenGL on Linux. It uses Dijkstra algorithm to find the shortest path between two crossings.
 
 # Content
 * Font file "ReggaeOneRegular.ttf"
