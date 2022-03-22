@@ -1,5 +1,6 @@
 /*Joanna Masikowska B9TB1710 - final project for Computer Seminar I, June 2021*/
 
+#include "Final.h"
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -9,19 +10,29 @@
 #include <unistd.h> 
 #include <GL/glfw.h>
 #include <FTGL/ftgl.h>
-#include "directory.h"//defines directory for the font file
 
 #define CrossingNumber 100 /*Number of intersections*/
 #define MaxName 50 /* Maximum 50 characters (single byte characters) */
-#define Radius_Marker 0.2
+#define Radius_Marker 0.2 
 
-/*Global Font*/
+/*Font*/
 #ifndef FONT_NAME
 #define FONT_NAME "/ReggaeOne-Regular.ttf" 
 #endif
-void currentDirectory(void);
 
-/*Define Global Int Array*/
+#ifndef MAX_BUF
+#define MAX_BUF 200
+#endif
+
+//define local pth
+char CURRENT_PATH[MAX_BUF];
+void currentDirectory(void) 
+{
+	char path[MAX_BUF];	
+	getcwd(path, MAX_BUF);
+	strcpy(CURRENT_PATH, path);
+}
+
 #define PathNumber 50
 int path[PathNumber + 1];
 
@@ -29,6 +40,7 @@ int path[PathNumber + 1];
 typedef struct {
 	double x, y; /* Position x, y */
 } Position; /* Structure for a position */
+
 
 typedef struct {
 	int id; /* Intersection id number */
@@ -43,7 +55,7 @@ typedef struct {
 
 Crossing cross[CrossingNumber];
 
-/*Read map data from a file*/
+
 int map_read(char *filename)
 {
 	FILE *fp;
@@ -67,6 +79,7 @@ int map_read(char *filename)
 	fclose(fp);
 	return crossing_number;
 }
+
 
 int search_cross(int crossing_number)
 {
@@ -105,18 +118,13 @@ int search_cross(int crossing_number)
 	return f;
 }
 
-/*** CALCULATE THE DISTANCE ***/
-/* Take ID of two crossings (if crossings are not sorted) and find the distance between two crossings.*/
+
 double distance(int a, int b)
 {
 	return hypot(cross[a].pos.x - cross[b].pos.x, cross[a].pos.y - cross[b].pos.y);
 }
 
-/***FIND SHORTEST DISTANCE***/
-/*
- * Dijkstra algorithm;
- * Input->number of crossings, ID of departure point, ID of destination point, array to store IDs of path
-*/
+
 int dijkstra(int crossing_number, int start, int goal, int path[])
 {
 	int i, j;
@@ -173,10 +181,11 @@ int dijkstra(int crossing_number, int start, int goal, int path[])
 	return 0;
 }
 
-/***INTERFACE INSTRUCTIONS***/
-/*Draw Text*/
+
 FTGLfont *font;
 char FONT_FILENAME[MAX_BUF];
+
+
 void setupfont() {
 	currentDirectory();
 	strcpy(FONT_FILENAME, CURRENT_PATH);
@@ -201,8 +210,7 @@ void outtextxy(double x, double y, char const *text) {
 	glPopMatrix();
 }
 
-/***DRAW MAP***/
-/*Draw a circle*/
+
 void circle(double x, double y, double r)
 {
 	int const N = 12; /* Divide the circumference by 12 and draw in line segments */
@@ -214,7 +222,7 @@ void circle(double x, double y, double r)
 	glEnd();
 }
 
-/*Draw a line*/
+
 void line(double x0, double y0, double x1, double y1)
 {
 	glBegin(GL_LINES);
@@ -223,7 +231,7 @@ void line(double x0, double y0, double x1, double y1)
 	glEnd();
 }
 
-/*Draw every crossing as a circle and print its name; Connect neighbour crossings by line*/
+
 void map_show(int crossing_number)
 {
 	int i, j, k;
@@ -247,7 +255,7 @@ void map_show(int crossing_number)
 	}
 }
 
-/*INPUT*/
+
 int inputKeyboard(int start, int goal, int crossing_number) {
 	printf("Start point: ");
 	start = search_cross(crossing_number);
