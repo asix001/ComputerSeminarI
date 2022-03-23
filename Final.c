@@ -15,32 +15,32 @@
 #define MaxName 50 /* Maximum 50 characters (single byte characters) */
 #define Radius_Marker 0.2 
 
-/*Font*/
+/*Font file*/
 #ifndef FONT_NAME
 #define FONT_NAME "/ReggaeOne-Regular.ttf" 
 #endif
 
+/*Buffer for the directory*/
 #ifndef MAX_BUF
 #define MAX_BUF 200
 #endif
 
-//define local pth
-char CURRENT_PATH[MAX_BUF];
+char currentPath[MAX_BUF];
+
 void currentDirectory(void) 
 {
 	char path[MAX_BUF];	
 	getcwd(path, MAX_BUF);
-	strcpy(CURRENT_PATH, path);
+	strcpy(currentPath, path);
 }
 
 #define PathNumber 50
 int path[PathNumber + 1];
 
-/*Structs for storing map data*/
+/*Structurs for storing map data*/
 typedef struct {
 	double x, y; /* Position x, y */
 } Position; /* Structure for a position */
-
 
 typedef struct {
 	int id; /* Intersection id number */
@@ -54,7 +54,6 @@ typedef struct {
 } Crossing;
 
 Crossing cross[CrossingNumber];
-
 
 int map_read(char *filename)
 {

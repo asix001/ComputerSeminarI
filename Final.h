@@ -1,6 +1,8 @@
 /*Joanna Masikowska B9TB1710 - final project for Computer Seminar I, June 2021*/
 #pragma once 
+
 #ifndef FINAL_H
+#define FINAL_H
 
 #include <stdio.h>
 #include <string.h>
@@ -13,7 +15,7 @@
 #include <FTGL/ftgl.h>
 
 #define CrossingNumber 100 /*Number of intersections*/
-#define MaxName 50 /* Maximum 50 characters (single byte characters) */
+#define MaxName 50 /* Maximum 50 characters (single byte characters) for the crossing name*/
 #define Radius_Marker 0.2 
 
 /*Font*/
@@ -21,16 +23,20 @@
 #define FONT_NAME "/ReggaeOne-Regular.ttf" 
 #endif
 
+/*Buffer for the directory*/
 #ifndef MAX_BUF
 #define MAX_BUF 200
 #endif
 
-
+/*Define path to find the font file*/
 void currentDirectory(void);
 
 /*Read map data from a file*/
 int map_read(char *filename);
 
+/*Find a crossing by its name in the database of size crossing_number 
+* Return 0 if the crossing is found. Terminate Program if crossing is not found.
+*/
 int search_cross(int crossing_number);
 
 /*** CALCULATE THE DISTANCE ***/
