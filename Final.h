@@ -31,46 +31,54 @@
 /*Define path to find the font file*/
 void currentDirectory(void);
 
+
 /*Read map data from a file*/
 int map_read(char *filename);
 
-/*Find a crossing by its name in the database of size crossing_number 
-* Return 0 if the crossing is found. Terminate Program if crossing is not found.
-*/
+
+/*
+ * Find a crossing  in the database of size crossing_number by its name.
+ * Return 0 if the crossing is found. Terminate program if the crossing is not found.
+ */
 int search_cross(int crossing_number);
 
-/*** CALCULATE THE DISTANCE ***/
+
 /* Take ID of two crossings (if crossings are not sorted) and find the distance between two crossings.*/
 double distance(int a, int b);
 
 
-/***FIND SHORTEST DISTANCE***/
 /*
- * Dijkstra algorithm;
- * Input -> number of crossings, ID of departure point, ID of destination point, array to store IDs of path
+ * Implementation of Dijkstra algorithm to find the shortest distance. 
+ * Input -> number of crossings in the database, ID of departure point, ID of destination point, array to store IDs of path
 */
 int dijkstra(int crossing_number, int start, int goal, int path[]);
 
 
 /***INTERFACE INSTRUCTIONS***/
-/*Draw Text*/
-FTGLfont *font;
-char FONT_FILENAME[MAX_BUF];
+//FTGLfont *font;
+//char FONT_FILENAME[MAX_BUF];
+
+/*Find font file and set up the font*/
 void setupfont();
 
+/*Draw text in the specified location (x,y)*/
 void outtextxy(double x, double y, char const *text);
 
-/***DRAW MAP***/
+
 /*Draw a circle*/
 void circle(double x, double y, double r);
+
 
 /*Draw a line*/
 void line(double x0, double y0, double x1, double y1);
 
+
 /*Draw every crossing as a circle and print its name; Connect neighbour crossings by line*/
 void map_show(int crossing_number);
 
-/*INPUT*/
+
+/*Take name of a crossing as a user input (string) and find the crossing in the database*/
 int inputKeyboard(int start, int goal, int crossing_number);
+
 #endif
 
