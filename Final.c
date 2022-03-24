@@ -330,8 +330,9 @@ int main(void)
 
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
-		glTranslatef(X, Y, Z);
-
+        ///
+		//glTranslatef(X, Y, Z);
+        glTranslated(X,Y,Z);
 		/* End when Esc is pressed or the window is closed */
 		if (glfwGetKey(GLFW_KEY_ESC) || !glfwGetWindowParam(GLFW_OPENED))
 			break;

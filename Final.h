@@ -4,16 +4,6 @@
 #ifndef FINAL_H
 #define FINAL_H
 
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <fnmatch.h> //UNIX standard, contains usleep()
-#include <ctype.h>
-#include <stdlib.h>
-#include <unistd.h> 
-#include <GL/glfw.h>
-#include <FTGL/ftgl.h>
-
 #define CrossingNumber 100 /*Number of intersections*/
 #define MaxName 50 /* Maximum 50 characters (single byte characters) for the crossing name*/
 #define Radius_Marker 0.2 
