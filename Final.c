@@ -9,38 +9,38 @@
 #include <stdlib.h>
 #include <unistd.h> 
 #include <GL/glfw.h>
-#include <FTGL/ftgl.h>
+#include <FTGL/ftgl.h> //library for rendering fonts
 
 #define CrossingNumber 100 /*Number of intersections*/
 #define MaxName 50 /* Maximum 50 characters (single byte characters) */
 #define Radius_Marker 0.2 
 
-/*Font*/
+/*Font file*/
 #ifndef FONT_NAME
 #define FONT_NAME "/ReggaeOne-Regular.ttf" 
 #endif
 
+/*Buffer for the directory*/
 #ifndef MAX_BUF
 #define MAX_BUF 200
 #endif
 
-//define local pth
-char CURRENT_PATH[MAX_BUF];
+char currentPath[MAX_BUF];
+
 void currentDirectory(void) 
 {
 	char path[MAX_BUF];	
 	getcwd(path, MAX_BUF);
-	strcpy(CURRENT_PATH, path);
+	strcpy(currentPath, path);
 }
 
 #define PathNumber 50
 int path[PathNumber + 1];
 
-/*Structs for storing map data*/
+/*Structurs for storing map data*/
 typedef struct {
 	double x, y; /* Position x, y */
 } Position; /* Structure for a position */
-
 
 typedef struct {
 	int id; /* Intersection id number */
@@ -54,7 +54,6 @@ typedef struct {
 } Crossing;
 
 Crossing cross[CrossingNumber];
-
 
 int map_read(char *filename)
 {
@@ -84,7 +83,8 @@ int map_read(char *filename)
 int search_cross(int crossing_number)
 {
 	int i;
-	char buff[256], answer[50];
+	char buff[256];
+	char answer[50];
 	int f = -1;      /* Flag set when item is found */
 
 	printf("Input the name of the crossing->");
@@ -103,7 +103,7 @@ int search_cross(int crossing_number)
 			{
 				printf("Did you mean: %s?\n->Type 'Yes' or 'No':", cross[i].ename);
 				scanf("%s", answer);
-				if (strstr("YESYEsYesyes", answer) != NULL) {
+				if (strstr("YES_YEs_yeS_yES_Yes_yes", answer) != NULL) {
 					f = i;
 					printf("%s was chosen\n", cross[i].ename);
 					break;
@@ -188,7 +188,7 @@ char FONT_FILENAME[MAX_BUF];
 
 void setupfont() {
 	currentDirectory();
-	strcpy(FONT_FILENAME, CURRENT_PATH);
+	strcpy(FONT_FILENAME, currentPath);
 	strcat(FONT_FILENAME, FONT_NAME);
 	font = ftglCreateExtrudeFont(FONT_FILENAME);
 	if (font == NULL) {
@@ -201,6 +201,8 @@ void setupfont() {
 	ftglSetFontOutset(font, 0, 0.1);
 	ftglSetFontCharMap(font, ft_encoding_unicode);
 }
+
+
 void outtextxy(double x, double y, char const *text) {
 	double const scale = 0.005;
 	glPushMatrix();
@@ -268,6 +270,7 @@ int inputKeyboard(int start, int goal, int crossing_number) {
 	}
 	return 0;
 }
+
 
 int main(void)
 {
